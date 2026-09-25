@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - Clash of BaNG</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="assets/logo.png" alt="Logo Clash of BaNG" class="logo-img">
+            <h1>Clash of baNG</h1>
+        </div>
+        <nav>
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="gallery.html" class="nav-btn">Gallery</a>
+            <a href="troops.html" class="nav-btn">Troops</a>
+            <a href="about.html" class="nav-btn">About</a>
+            <a href="register.html" class="nav-btn" id="nav-join-btn">Join Us</a>
+            <img src="assets/user.jpg" alt="User Avatar" class="user-avatar" id="nav-avatar" style="display: none;" onclick="window.location.href='profile.html'">        
+        </nav>
+    </header>
+
+    <main class="auth-main">
+        
+        <div id="view-gateway" class="auth-container animate-on-scroll">
+            <h2 class="auth-title">Welcome to Clash of BaNG</h2>
+            <p class="auth-subtitle">Are you already a member of our community?</p>
+            <div class="gateway-buttons">
+                <button type="button" class="auth-btn primary-btn" onclick="switchView('view-login')">Yes, I have an account (Login)</button>
+                <button type="button" class="auth-btn secondary-btn" onclick="switchView('view-community-form')">No, I want to join (Register)</button>
+            </div>
+        </div>
+
+        <div id="view-login" class="auth-container" style="display: none;">
+            <h2 class="auth-title">Welcome Back</h2>
+            <p class="auth-subtitle">Enter your credentials to access the clan.</p>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="youremail@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-btn primary-btn">Login</button>
+                <button type="button" class="auth-btn secondary-btn" onclick="switchView('view-gateway')">Back</button>
+            </form>
+        </div>
+
+        <div id="view-community-form" class="auth-container" style="display: none;">
+            <h2 class="auth-title">Join Our Community</h2>
+            <p class="auth-subtitle">Fill out the form below to become a member of Clash of BaNG</p>
+            <form id="community-form" onsubmit="handleCommunitySubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="youremail@example.com" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label>Gender</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gender" value="male" required> Male</label>
+                            <label><input type="radio" name="gender" value="female" required> Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group half-width">
+                        <label>Age</label>
+                        <input type="number" min="13" placeholder="Minimum 13 years old" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Favorite Troop</label>
+                    <select required>
+                        <option value="">--- Select a troop ---</option>
+                        <option value="solar">The Solar Paladins</option>
+                        <option value="verdant">The Verdant Thorns</option>
+                        <option value="silver">The Silver Sentinels</option>
+                        <option value="glitch">The Glitch Blade</option>
+                        <option value="obsidian">The Obsidian Aegis</option>
+                        <option value="force">The Force Strikers</option>
+                        <option value="abyssal">The Abyssal Ravagers</option>
+                        <option value="dread">The Dread Reapers</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Why do you want to join Clash of BaNG?</label>
+                    <textarea rows="4" placeholder="Tell us about your interest in the community..." required></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="agreement-checkbox" onchange="toggleSubmitBtn()"> 
+                        I agree to the community guidelines and terms of service
+                    </label>
+                </div>
+                <div class="form-row buttons-row">
+                    <button type="submit" id="submit-community-btn" class="auth-btn primary-btn" disabled>Submit Registration</button>
+                    <button type="reset" class="auth-btn secondary-btn">Reset Form</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="view-create-account" class="auth-container" style="display: none;">
+            <h2 class="auth-title">Create Your Account</h2>
+            <p class="auth-subtitle">Community form submitted! Now, secure your account.</p>
+            <form id="create-account-form" onsubmit="handleAccountCreate(event)">
+                <div class="form-group">
+                    <label>Email or Phone Number</label>
+                    <input type="text" placeholder="Email / Phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="new-password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label>Verify Password</label>
+                    <input type="password" id="confirm-password" placeholder="Re-enter password" required>
+                </div>
+                <button type="submit" class="auth-btn primary-btn">Complete Registration</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-columns">
+            <div class="footer-col">
+                <h4>Clash of baNG</h4>
+                <p>A thriving fan community since 2018</p>
+            </div>
+            <div class="footer-col">
+                <h4>Regional Hubs</h4>
+                <p>Jakarta</p>
+                <p>Bandung</p>
+                <p>Sanur</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Clash of BaNG. Fan community website.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fungsi untuk ganti-ganti tampilan form
+        function switchView(viewId) {
+            document.getElementById('view-gateway').style.display = 'none';
+            document.getElementById('view-login').style.display = 'none';
+            document.getElementById('view-community-form').style.display = 'none';
+            document.getElementById('view-create-account').style.display = 'none';
+            
+            let activeView = document.getElementById(viewId);
+            activeView.style.display = 'block';
+            activeView.classList.add('animate-on-scroll'); // Panggil animasi masuk
+        }
+
+        // Buka gembok tombol submit kalau checkbox dicentang
+        function toggleSubmitBtn() {
+            const checkbox = document.getElementById('agreement-checkbox');
+            const submitBtn = document.getElementById('submit-community-btn');
+            submitBtn.disabled = !checkbox.checked;
+        }
+
+        // Lanjut ke halaman Create Account pas form komunitas disubmit
+        function handleCommunitySubmit(event) {
+            event.preventDefault(); // Biar web ga reload
+            switchView('view-create-account');
+        }
+
+        // Simulasi Login Sukses
+        function handleLogin(event) {
+            event.preventDefault();
+            suksesLogin();
+        }
+
+        // Simulasi Bikin Akun Sukses
+        function handleAccountCreate(event) {
+            event.preventDefault();
+            const pw1 = document.getElementById('new-password').value;
+            const pw2 = document.getElementById('confirm-password').value;
+            
+            if(pw1 !== pw2) {
+                alert("Passwords do not match! Please try again.");
+                return;
+            }
+            alert("Account created successfully! Welcome to the clan.");
+            suksesLogin();
+        }
+
+        // Fungsi Global untuk Login State
+        function suksesLogin() {
+            // Simpan status login di memori browser
+            localStorage.setItem("isLoggedIn", "true");
+            window.location.href = "index.html"; // Lempar balik ke home
+        }
+
+        // Cek status login pas halaman dimuat (Logika Bouncer)
+        window.onload = function() {
+            if(localStorage.getItem("isLoggedIn") === "true") {
+                // Kalau udah login tapi nyasar ke sini, langsung tendang ke Profile!
+                window.location.href = "profile.html";
+            } else {
+                // Kalau emang belum login, pastiin tombol Join Us nyala dan Avatar mati
+                const avatar = document.getElementById('nav-avatar');
+                const joinBtn = document.getElementById('nav-join-btn');
+                if(avatar) avatar.style.display = 'none';
+                if(joinBtn) joinBtn.style.display = 'inline-block';
+            }
+        };
+    </script>
+</body>
+</html>
